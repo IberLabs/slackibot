@@ -77,7 +77,7 @@ func botResponse(ws *websocket.Conn, channelRealName string, alertWord string, m
 	msgResponse := "Special word '" + alertWord + "' detected, triggering alert. A team member will bring you support in short.\n"
 
 	if isOutOfOffice() {
-		msgResponse = msgResponse + "Out of office hours.\nActivating oncall support.\n"
+		msgResponse = msgResponse + "Out of office hours. Activating oncall support.\n"
 	}
 
 	// Standard channel response message
@@ -95,6 +95,7 @@ func botResponse(ws *websocket.Conn, channelRealName string, alertWord string, m
  */
 func isOutOfOffice() bool{
 	result := false
+
 	thisWeekDay := time.Now().Weekday()
 	thisHour := time.Now().Hour()
 	if thisWeekDay == TIMETABLE_SATURDAY || thisWeekDay == TIMETABLE_SUNDAY {
@@ -102,14 +103,18 @@ func isOutOfOffice() bool{
 		result = true
 	}
 
-	if !result && (thisHour >= TIMETABLE_WATCHING_START || thisHour <= TIMETABLE_WATCHING_END -1) {
+	if !result && (thisHour < TIMETABLE_WATCHING_START || thisHour > TIMETABLE_WATCHING_END -1) {
 		// No office hours
 		result = true
 	}
 
+	dateString := time.Now().Format("01-02-2016 15:04:05")
 	if result {
-		c.Display(time.Now().Format("01-02-2016 15:04:05") + " Out of office hours response", false, true)
+		dateString += " Out-of-office hours"
+	}else{
+		dateString += " Office hours"
 	}
+	c.Display(time.Now().Format("01-02-2016 15:04:05") + dateString, false, true)
 
 	return result
 }
