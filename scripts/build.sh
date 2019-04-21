@@ -1,12 +1,30 @@
 #!/bin/bash
-
 set -e
-
 SOURCE=$0;
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 SDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 export CGO_ENABLED=1
+
+# Compile for a determined host SO
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+    export GOOS=linux
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    export GOOS=linux
+elif [[ "$OSTYPE" == "cygwin" ]]; then
+    export GOOS=windows
+elif [[ "$OSTYPE" == "msys" ]]; then
+    export GOOS=windows
+elif [[ "$OSTYPE" == "win32" ]]; then
+    export GOOS=windows
+elif [[ "$OSTYPE" == "android" ]]; then
+    export GOOS=android
+elif [[ "$OSTYPE" == "freebsd"* ]]; then
+    export GOOS=linux
+else
+    export GOOS=linux
+fi
+echo "Compiling for $OSTYPE host"
 
 source ${SDIR}/env.sh
 MGDIR_GOPATH=${MGDIR}

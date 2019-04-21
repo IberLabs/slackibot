@@ -16,3 +16,7 @@ Current features:
 #### Windows/Linux/Mac ####
 Go to script folder and execute
 ./build.sh
+
+#### Build dependencies ####
+You will need Docker version 17.05 or higher since "multi-stage builds" feature is used.
+Further read: https://docs.docker.com/develop/develop-images/multistage-build/
