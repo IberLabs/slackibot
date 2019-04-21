@@ -14,5 +14,5 @@ Current features:
 ### How to build  ###
 
 #### Windows/Linux/Mac ####
-
-sh scripts/build.sh
+Go to script folder and execute
+./build.sh

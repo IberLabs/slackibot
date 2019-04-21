@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -e
 
-SOURCE="${BASH_SOURCE[0]}"
+SOURCE=$0;
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 SDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
