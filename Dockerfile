@@ -18,4 +18,4 @@ COPY --from=builder /go/src/slackibot/bin /slackibot/
 RUN chmod +x /slackibot/slackibot
 RUN chmod -R +wxr /slackibot
 #ENTRYPOINT ["/slackibot"]
-CMD ["./slackibot"]
+CMD ["./slackibot/slackibot"]
