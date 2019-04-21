@@ -11,8 +11,9 @@ import (
 	"time"
 )
 
+
 /**
-	Detect if the bot has been mentioned
+	Detect if the bot has been mentioned (interacti)
  */
 func mentionedMe(ws *websocket.Conn, m slacklib.Message) {
 	// if so try to parse if

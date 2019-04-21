@@ -1,0 +1,15 @@
+{
+  "TokenSlack": 	"here-your-slack-token",
+  "TokenOpsgenie": 	"here-your-opsgenie-token",
+  "TokenJira": 		"here-your-jira-token",
+  "Jira": {
+    "BaseUrl":		"xxx",
+    "ApiUrl":		"xxx",
+	"CookieLogin": 	{
+		"Username":		"yyy",
+		"Password":		"yyy",
+		"BaseSessUrl": 	"yyy"
+	},
+	"Token": 		"zzz"
+  }
+}
