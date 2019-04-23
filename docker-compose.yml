@@ -2,7 +2,8 @@ version: "2"
 
 services:
   slackibot:
-    container_name: slackibot
     build: ./
     volumes:
-      - ./ibot.log:/ibot.log
+      - ./data/ibot.log:/ibot.log
+      - ./data/bot.db:/bot.db
+      - ./data/config.json:/config.json

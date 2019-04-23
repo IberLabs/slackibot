@@ -4,6 +4,7 @@ import (
 	"flag"
 	"github.com/google/logger"
 	"github.com/nlopes/slack"
+	"io/ioutil"
 	"os"
 	c "slackibot/common"
 	"slackibot/common/slacklib"
@@ -47,8 +48,8 @@ func main() {
 	}
 	defer lf.Close()
 
-	var verboseMode= flag.Bool("verbose", GLBL_VERBOSE, "print info level logs to stdout")
-	defer logger.Init("slackibot", *verboseMode, true, lf).Close()
+	verboseMode := flag.Bool("verbose", GLBL_VERBOSE, "print info level logs to stdout")
+	defer logger.Init("slackibots", *verboseMode, false, ioutil.Discard).Close()
 	c.Display("slackibot " + GLBL_VERSION + " started!", false, true)
 
 	// Load general configuration from json file

@@ -4,7 +4,10 @@ SOURCE=$0;
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 SDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
+# Static compile
 export CGO_ENABLED=1
+# Compile for a determined architecture
+export GARCH=amd64
 
 # Compile for a determined host SO
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -38,7 +41,6 @@ pushd ${MGDIR_GOPATH}/cmd/slackibot
 #  TAG="$(git describe --tags)"
 #  REVISION="$(git rev-parse HEAD)"
 #fi
-
 
 go build
 mv slackibot* ${MGDIR_GOPATH}/bin/
