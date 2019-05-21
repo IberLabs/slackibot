@@ -16,7 +16,6 @@ RUN /bin/bash /go/src/slackibot/scripts/build.sh
 FROM alpine:3.9
 LABEL maintainer="Manuel Boira <manuelbcd@gmail.com>"
 RUN apk update && apk add --no-cache ca-certificates libc6-compat
-EXPOSE 3000
 RUN mkdir /slackibot
 COPY --from=builder /go/src/slackibot/bin /slackibot/
 
